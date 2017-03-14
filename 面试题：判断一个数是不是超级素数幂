@@ -1,0 +1,58 @@
+#pragma once 
+#include<math.h>
+//如果一个数字能表示为p^q(^表示幂运算)且p为一个素数,q为大于1的正整数就称这个数叫做超级素数幂。
+//现在给出一个正整数n,如果n是一个超级素数幂需要找出对应的p,q。
+
+
+//题目要求
+//输入 ： 输入一个整数 n(2 ≤ n ≤ 10^18)
+
+//输出：
+//如果n是一个超级素数幂则输出p,q,以空格分隔,行末无空格。
+//如果n不是超级素数幂，则输出No
+
+//判断一个数是不是素数
+bool IsPrime(const size_t n)
+{
+	double tmp  = sqrt((double)n);
+	for(size_t i = 2;i <= tmp;++i)
+	{
+		if(n%i == 0)
+		{
+			return  false;
+		}
+	}
+	return  true;
+
+
+}
+void  IsSuperPrime(const  long long n)
+{
+	double tmp  = sqrt((double)n);//找到当前的数的 开方值  
+								  //为什么呢  ？？？？
+								  // 要得到的q要大于1的正整数，，，那么p的最大值 只能是 tmp
+	for(double p = 2 ;p <= tmp;++p)//
+	{
+		if(IsPrime(p))//要是p是素数    判断  ，，， 否则直接pass
+		{
+			double q= 2;
+			double num  = pow(p,q);
+			while(num < n)
+			{
+				++q;
+				num  = pow(p,q);
+			}
+			if(num == n)
+			{
+				cout<<p<<" "<<q<<endl;
+				return ;
+			}
+		}
+	}
+	cout<<"No"<<endl;
+}
+
+void TestOne()
+{
+	IsSuperPrime(64);
+}
