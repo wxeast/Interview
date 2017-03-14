@@ -1,0 +1,37 @@
+#pragma once 
+//面试题 ：
+// 一本书 有 n页，，，，，，，
+
+
+// 判断出 这本书的页数中 0-9出现的次数  
+int GetMaxDigit(int n)
+{
+	int base = 10;
+	int digit = 1;
+	while(n >= base)
+	{
+		base *=10;
+		digit++;
+	}
+	return digit;
+}
+void Fun(int n)
+{
+	int count[10]={0};
+	for(int  i =  1;i <= n;++i)
+	{
+		int digit  = GetMaxDigit(i);
+		int base = 1;
+		for(int j = 0 ;j <digit;++j)
+		{
+			int  num  = (i/base)%10;
+			count[num]++;
+			base *= 10;
+		}
+	}
+}
+
+void TestTwo()
+{
+	Fun(999);
+}
