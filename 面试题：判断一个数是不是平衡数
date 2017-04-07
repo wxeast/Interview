@@ -1,0 +1,47 @@
+#pragma  once
+
+//判断一个数是不是一个平衡数
+//关于平衡树的定义   
+//所谓的平衡数：：：；一个数的可分为 左、右的两个部分   左右两个数每一位的数相乘的结果相等 
+//此数就是 一个平衡数  、、、 例如    1221     分为 左  12 右 21 两个部分     1*2 = 2*1 
+
+//得到一个数的各位数的乘积
+int GetNumIdexMul(int m)
+{
+	int ret  =  1;
+	while(m)
+	{
+		ret  = ret * (m % 10);
+		m = m/10;
+	}
+	return  ret;
+}
+//判断一个数是不是 平衡数
+void IsBalancedData(int n)
+{
+	int  num =  n;
+	int  base =10;
+	while(num >9)
+	{
+		int  right =  n % base;//得到右边的数据
+		int  left  =  n / base;//得到右边的数据
+		if(GetNumIdexMul(left) == GetNumIdexMul(right))
+		{
+			cout<<"YES"<<endl;
+			return  ;
+		}
+		num  = left;
+		base *=10;
+	}
+	cout<<"NO"<<endl;
+}
+
+
+
+void TestThree()
+{
+
+	int  N;
+	cin>>N;
+	IsBalancedData(N);
+}
